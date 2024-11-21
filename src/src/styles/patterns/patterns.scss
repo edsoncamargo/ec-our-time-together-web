@@ -1,0 +1,16 @@
+.ec-pattern {
+  height: 100%;
+  width: 100%;
+  display: block;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 999;
+  pointer-events: none;
+
+  &--noise {
+    background-size: 125%;
+    background-image: url('/images/noise.webp');
+    background-repeat: repeat;
+  }
+}

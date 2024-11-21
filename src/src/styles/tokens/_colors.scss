@@ -1,0 +1,19 @@
+$colors-tokens: (
+  'color-primary-background': #740000,
+  'color-primary-text': #ffffff,
+  'color-secondary-text': #d3d3d3,
+
+  'color-accent-color': #f4d03f,
+  'color-accent-muted': #f5e1a4,
+
+  'color-interactive-light': #fad0c2,
+  'color-interactive-dark': #d85c78,
+
+  'color-highlight-color': #ffd8b1,
+);
+
+:root {
+  @each $key, $value in $colors-tokens {
+    --ec-#{$key}: #{$value};
+  }
+}

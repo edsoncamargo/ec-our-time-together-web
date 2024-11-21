@@ -1,0 +1,13 @@
+$spacing-tokens: (
+  sm: 4px,
+  md: 8px,
+  lg: 16px,
+  xl: 24px,
+  xxl: 32px,
+);
+
+:root {
+  @each $key, $value in $spacing-tokens {
+    --ec-spacing-#{$key}: #{$value};
+  }
+}

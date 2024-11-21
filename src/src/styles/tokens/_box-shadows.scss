@@ -1,0 +1,12 @@
+$shadows-tokens: (
+  'light': 0px 4px 8px -2px rgba(0, 0, 0, 0.1),
+  'medium': 0px 10px 16px -4px rgba(0, 0, 0, 0.23),
+  'strong': 0px 15px 30px -5px rgba(0, 0, 0, 0.35),
+  'hover': 0px 20px 40px -10px rgba(0, 0, 0, 0.5),
+);
+
+:root {
+  @each $key, $value in $shadows-tokens {
+    --ec-shadow-#{$key}: #{$value};
+  }
+}
