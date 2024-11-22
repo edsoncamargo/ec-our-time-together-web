@@ -1,0 +1,20 @@
+.ec-tag {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75px;
+  position: relative;
+
+  .ec-icon {
+    width: 25%;
+    position: absolute;
+    right: -8px;
+    top: -24px;
+
+    color: var(--ec-color-interactive-light);
+
+    > * {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

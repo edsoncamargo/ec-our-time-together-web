@@ -1,0 +1,11 @@
+@use './parkinsans';
+
+body {
+  @extend .ec-parkinsans;
+}
+
+.ec-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--ec-color-primary-background);
+}

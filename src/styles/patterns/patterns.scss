@@ -10,7 +10,13 @@
 
   &--noise {
     background-size: 125%;
-    background-image: url('/images/noise.webp');
+    background-image: url('/images/patterns/noise.webp');
+    background-repeat: repeat;
+  }
+
+  &--topography {
+    background-size: 100%;
+    background-image: url('/images/patterns/topography.svg');
     background-repeat: repeat;
   }
 }
