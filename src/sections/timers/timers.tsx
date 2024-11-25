@@ -6,7 +6,9 @@ import Tag from '../../components/tag/tag';
 
 export default function Timers() {
   return (
-    <article className='ec-content'>
+    <article className='ec-timers'>
+      <h1 className='ec-timers__title ec-norican'>nosso tempo juntos.</h1>
+
       <Tag>
         <Tag.Header>
           <Tag.Title>

@@ -1,37 +1,27 @@
 .ec-banner {
   display: block;
-
   min-height: 400px;
-  width: 100vw;
-
   position: relative;
-
   background-size: cover;
-  background-image: url('./images/banner.jpg');
+  background-image: url('/images/banner.jpg');
   background-repeat: no-repeat;
   background-position: center;
-
   border-bottom: {
     left-radius: var(--ec-radius-xl);
     right-radius: var(--ec-radius-xl);
   }
   border-bottom: 4px solid var(--ec-color-accent-color);
-
   box-shadow: var(--ec-shadow-medium);
   overflow: hidden;
 
   &:before {
     content: '';
-
     display: block;
-
     height: 100%;
     width: 100%;
-
     position: absolute;
     left: 0;
     bottom: -90px;
-
     background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0) 0%,
@@ -39,7 +29,6 @@
       var(--ec-color-primary-background) 100%
     );
     opacity: 0.8;
-
     border-bottom: {
       left-radius: var(--ec-radius-xl);
       right-radius: var(--ec-radius-xl);
