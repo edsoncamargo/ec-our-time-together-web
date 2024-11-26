@@ -1,1 +1,15 @@
 @use './src/styles/global';
+
+.ec-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ec-spacing-xxl);
+  position: relative;
+  padding: {
+    top: 32px;
+    left: 24px;
+    right: 24px;
+    bottom: 40px;
+  }
+  overflow: hidden;
+}

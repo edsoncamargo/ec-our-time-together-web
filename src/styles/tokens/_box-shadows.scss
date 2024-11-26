@@ -5,8 +5,26 @@ $shadows-tokens: (
   'hover': 0px 20px 40px -10px rgba(0, 0, 0, 0.5),
 );
 
+$directions: (
+  'down': 1,
+  'up': -1,
+);
+
 :root {
   @each $key, $value in $shadows-tokens {
-    --ec-shadow-#{$key}: #{$value};
+    @each $dir-name, $dir-factor in $directions {
+      $offset-x: nth($value, 1);
+      $offset-y: nth($value, 2) * $dir-factor;
+      $blur-radius: nth($value, 3);
+      $spread-radius: nth($value, 4);
+      $color: nth($value, 5);
+      $adjusted-shadow: #{$offset-x}
+        #{$offset-y}
+        #{$blur-radius}
+        #{$spread-radius}
+        #{$color};
+
+      --ec-shadow-#{$key}-#{$dir-name}: #{$adjusted-shadow};
+    }
   }
 }

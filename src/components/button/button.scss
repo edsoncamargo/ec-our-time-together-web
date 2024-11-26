@@ -1,0 +1,25 @@
+.ec-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ec-spacing-sm);
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: lowercase;
+  color: var(--ec-color-primary-background);
+  background-color: var(--ec-color-interactive-light);
+  padding: var(--ec-spacing-lg);
+  border-radius: var(--ec-radius-rounded);
+  box-shadow: var(--ec-shadow-hover-down);
+  transition: all 0.3s ease-in-out;
+
+  &:active {
+    box-shadow: none;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

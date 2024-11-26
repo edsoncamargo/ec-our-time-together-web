@@ -2,14 +2,8 @@ import './timer.scss';
 
 import { useEffect, useState } from 'react';
 
-import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
-
-// Configuração do Day.js
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import services from '../../lib/days';
 
 interface TimerProps {
   startDate: string;
@@ -24,9 +18,9 @@ export default function Timer({ startDate }: Readonly<TimerProps>) {
   });
 
   useEffect(() => {
-    const start = dayjs.utc(startDate).tz('America/Sao_Paulo');
+    const start = services.dayjs.utc(startDate).tz('America/Sao_Paulo');
     const updateElapsedTime = () => {
-      const now = dayjs().tz('America/Sao_Paulo');
+      const now = services.dayjs().tz('America/Sao_Paulo');
 
       setElapsed({
         days: now.diff(start, 'day'),
