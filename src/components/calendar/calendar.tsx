@@ -1,9 +1,8 @@
 import './calendar.scss';
 
-import { FaFaceKissWinkHeart, FaRing } from 'react-icons/fa6';
-
 import Card from '../card/card';
 import { Dayjs } from 'dayjs';
+import { FaFaceKissWinkHeart } from 'react-icons/fa6';
 import Tag from '../tag/tag';
 import services from '../../lib/days';
 
