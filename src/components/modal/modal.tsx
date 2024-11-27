@@ -1,6 +1,6 @@
 import './modal.scss';
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 interface ModalProps {
   children: ReactNode;
@@ -13,6 +13,24 @@ export default function Modal({
   isOpen,
   handleClose,
 }: Readonly<ModalProps>) {
+  const [modalVisible, setModalVisible] = useState(isOpen);
+
+  useEffect(() => {
+    handleBodyOverflow();
+
+    function handleBodyOverflow() {
+      if (modalVisible) {
+        document.querySelector('body')!.style.overflow = 'hidden';
+      } else {
+        document.querySelector('body')!.style.overflow = 'auto';
+      }
+    }
+  }, [modalVisible]);
+
+  useEffect(() => {
+    if (isOpen !== modalVisible) setModalVisible(isOpen);
+  }, [isOpen, modalVisible]);
+
   return (
     <>
       <div className='ec-modal' data-open={isOpen} aria-hidden={!isOpen}>

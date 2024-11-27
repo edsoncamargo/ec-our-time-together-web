@@ -1,0 +1,18 @@
+.ec-footer {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ec-spacing-sm);
+    background-color: var(--ec-color-interactive-dark);
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--ec-color-interactive-light);
+    padding: var(--ec-spacing-lg);
+
+    a {
+      color: var(--ec-color-interactive-light);
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+}
