@@ -37,7 +37,7 @@ interface TitleProps {
 }
 
 function Title({ children }: Readonly<TitleProps>) {
-  return <h2 className='ec-title'>{children}</h2>;
+  return <h2 className='ec-tag__title ec-title'>{children}</h2>;
 }
 
 interface IconProps {
@@ -45,7 +45,7 @@ interface IconProps {
 }
 
 function Icon({ children }: Readonly<IconProps>) {
-  return <div className='ec-icon'>{children}</div>;
+  return <div className='ec-tag__icon'>{children}</div>;
 }
 
 Tag.Header = Header;

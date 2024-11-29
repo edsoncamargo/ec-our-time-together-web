@@ -4,7 +4,11 @@
   gap: 1px;
   position: relative;
 
-  .ec-icon {
+  &__title {
+    max-width: 230px;
+  }
+
+  &__icon {
     width: 25%;
     position: absolute;
     right: -8px;

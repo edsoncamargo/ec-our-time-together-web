@@ -2,19 +2,17 @@ import './calendar.scss';
 
 import Card from '../card/card';
 import { Dayjs } from 'dayjs';
-import { FaFaceKissWinkHeart } from 'react-icons/fa6';
-import Tag from '../tag/tag';
 import services from '../../lib/days';
+
+interface CalendarProps {
+  celebrationDate: string;
+}
 
 type DayInfo = {
   day: string;
   isCurrent?: boolean;
   isPrevious: boolean;
 };
-
-interface CalendarProps {
-  celebrationDate: string;
-}
 
 export default function Calendar({ celebrationDate }: Readonly<CalendarProps>) {
   const weekDays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
@@ -28,6 +26,7 @@ export default function Calendar({ celebrationDate }: Readonly<CalendarProps>) {
   const adjustedDate = inputDate.isBefore(currentDate, 'day')
     ? inputDate.add(1, 'year')
     : inputDate;
+  const adjustedYear = adjustedDate.get('year');
 
   const startOfMonth = adjustedDate.startOf('month');
   const endOfMonth = adjustedDate.endOf('month');
@@ -74,51 +73,39 @@ export default function Calendar({ celebrationDate }: Readonly<CalendarProps>) {
   const emptyDays = getEmptyDays(startDay, startOfMonth);
 
   return (
-    <Tag>
-      <Tag.Header>
-        <Tag.Title>
-          COMEMORAR O <br /> PRIMEIRO BEIJO
-        </Tag.Title>
+    <Card>
+      <div className='ec-calendar'>
+        <h3 className='ec-calendar__title ec-parkinsans'>
+          <span>{celebrationMonth}</span> {adjustedYear}
+        </h3>
 
-        <Tag.Icon>
-          <FaFaceKissWinkHeart />
-        </Tag.Icon>
-      </Tag.Header>
+        <div className='ec-calendar__header'>
+          {weekDays.map(function (weekDay: string) {
+            return (
+              <span key={weekDay} className='ec-calendar__week-day'>
+                {weekDay}
+              </span>
+            );
+          })}
+        </div>
 
-      <Card>
-        <div className='ec-calendar'>
-          <h3 className='ec-calendar__title ec-parkinsans'>
-            <span>{celebrationMonth}</span> {currentYear}
-          </h3>
-
-          <div className='ec-calendar__header'>
-            {weekDays.map(function (weekDay: string) {
+        <div className='ec-calendar__body'>
+          {emptyDays
+            .concat(daysInMonth)
+            .map(function (dayInfo: DayInfo, index: number) {
               return (
-                <span key={weekDay} className='ec-calendar__week-day'>
-                  {weekDay}
+                <span
+                  key={dayInfo.day + index}
+                  className={`ec-calendar__day${
+                    dayInfo.isPrevious ? ' ec-calendar__day--previous' : ''
+                  }${dayInfo.isCurrent ? ' ec-calendar__day--current' : ''}`}
+                >
+                  {dayInfo.day.split('/')[0]}
                 </span>
               );
             })}
-          </div>
-
-          <div className='ec-calendar__body'>
-            {emptyDays
-              .concat(daysInMonth)
-              .map(function (dayInfo: DayInfo, index: number) {
-                return (
-                  <span
-                    key={dayInfo.day + index}
-                    className={`ec-calendar__day${
-                      dayInfo.isPrevious ? ' ec-calendar__day--previous' : ''
-                    }${dayInfo.isCurrent ? ' ec-calendar__day--current' : ''}`}
-                  >
-                    {dayInfo.day.split('/')[0]}
-                  </span>
-                );
-              })}
-          </div>
         </div>
-      </Card>
-    </Tag>
+      </div>
+    </Card>
   );
 }

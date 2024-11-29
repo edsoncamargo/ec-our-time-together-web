@@ -1,41 +1,33 @@
 import './timers.scss';
 
-import { FaFaceKissWinkHeart, FaRing } from 'react-icons/fa6';
+import * as Icons from 'react-icons/fa6';
 
+import { TIMERS } from '../../data/timers.data';
 import Tag from '../../components/tag/tag';
+import { Timer } from '../../types/timer.types';
 
 export default function Timers() {
   return (
     <article className='ec-timers'>
       <h1 className='ec-timers__title ec-norican'>nosso tempo juntos.</h1>
 
-      <Tag>
-        <Tag.Header>
-          <Tag.Title>
-            DESDE O <br /> PRIMEIRO BEIJO
-          </Tag.Title>
+      {TIMERS.map((timer: Timer) => {
+        const Icon = Icons[timer.icon as keyof typeof Icons];
 
-          <Tag.Icon>
-            <FaFaceKissWinkHeart />
-          </Tag.Icon>
-        </Tag.Header>
+        return (
+          <Tag key={timer.title}>
+            <Tag.Header>
+              <Tag.Title>{timer.title}</Tag.Title>
 
-        <Tag.Body startDate='2016-05-05T12:00:00-03:00' />
-      </Tag>
+              <Tag.Icon>
+                <Icon />
+              </Tag.Icon>
+            </Tag.Header>
 
-      <Tag>
-        <Tag.Header>
-          <Tag.Title>
-            DESDE O <br /> PEDIDO DE NAMORO
-          </Tag.Title>
-
-          <Tag.Icon>
-            <FaRing />
-          </Tag.Icon>
-        </Tag.Header>
-
-        <Tag.Body startDate='2016-09-04T14:00:00-03:00' />
-      </Tag>
+            <Tag.Body startDate={timer.startDate} />
+          </Tag>
+        );
+      })}
     </article>
   );
 }

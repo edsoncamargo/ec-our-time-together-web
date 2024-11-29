@@ -1,10 +1,13 @@
 import './navbar.scss';
 
-import { FaCalendar, FaPlay } from 'react-icons/fa6';
+import * as Icons from 'react-icons/fa6';
 
 import Button from '../../components/button/button';
+import { CALENDARS } from '../../data/calendars.data';
 import Calendar from '../../components/calendar/calendar';
+import { Calendar as CalendarType } from '../../types/calendar.types';
 import Modal from '../../components/modal/modal';
+import Tag from '../../components/tag/tag';
 import { useState } from 'react';
 
 export default function Navbar() {
@@ -25,7 +28,7 @@ export default function Navbar() {
           <li>
             <Button onClick={handleModalOpen}>
               <Button.Icon>
-                <FaCalendar />
+                <Icons.FaCalendar />
               </Button.Icon>
             </Button>
           </li>
@@ -33,7 +36,7 @@ export default function Navbar() {
           <li>
             <Button>
               <Button.Icon>
-                <FaPlay />
+                <Icons.FaPlay />
               </Button.Icon>
             </Button>
           </li>
@@ -41,8 +44,23 @@ export default function Navbar() {
       </nav>
 
       <Modal isOpen={isModalOpen} handleClose={handleModalClose}>
-        <Calendar celebrationDate='11-24'></Calendar>
-        <Calendar celebrationDate='11-24'></Calendar>
+        {CALENDARS.map((calendar: CalendarType) => {
+          const Icon = Icons[calendar.icon as keyof typeof Icons];
+
+          return (
+            <Tag key={calendar.title}>
+              <Tag.Header>
+                <Tag.Title>{calendar.title}</Tag.Title>
+
+                <Tag.Icon>
+                  <Icon />
+                </Tag.Icon>
+              </Tag.Header>
+
+              <Calendar celebrationDate={calendar.celebrationDate}></Calendar>
+            </Tag>
+          );
+        })}
       </Modal>
     </>
   );
