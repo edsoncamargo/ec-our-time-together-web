@@ -3,11 +3,8 @@ import './navbar.scss';
 import * as Icons from 'react-icons/fa6';
 
 import Button from '../../components/button/button';
-import { CALENDARS } from '../../data/calendars.data';
-import Calendar from '../../components/calendar/calendar';
-import { Calendar as CalendarType } from '../../types/calendar.types';
+import Calendars from './components/calendars';
 import Modal from '../../components/modal/modal';
-import Tag from '../../components/tag/tag';
 import { useState } from 'react';
 
 export default function Navbar() {
@@ -25,7 +22,7 @@ export default function Navbar() {
     <>
       <nav className='ec-navbar'>
         <ul>
-          <li>
+          <li data-aos='fade-up'>
             <Button onClick={handleModalOpen}>
               <Button.Icon>
                 <Icons.FaCalendar />
@@ -33,7 +30,7 @@ export default function Navbar() {
             </Button>
           </li>
 
-          <li>
+          <li data-aos='fade-up' data-aos-delay='25'>
             <Button>
               <Button.Icon>
                 <Icons.FaPlay />
@@ -44,23 +41,10 @@ export default function Navbar() {
       </nav>
 
       <Modal isOpen={isModalOpen} handleClose={handleModalClose}>
-        {CALENDARS.map((calendar: CalendarType) => {
-          const Icon = Icons[calendar.icon as keyof typeof Icons];
-
-          return (
-            <Tag key={calendar.title}>
-              <Tag.Header>
-                <Tag.Title>{calendar.title}</Tag.Title>
-
-                <Tag.Icon>
-                  <Icon />
-                </Tag.Icon>
-              </Tag.Header>
-
-              <Calendar celebrationDate={calendar.celebrationDate}></Calendar>
-            </Tag>
-          );
-        })}
+        <h1 className='ec-norican ec-norican--overflow'>
+          próximo dia especial.
+        </h1>
+        <Calendars />
       </Modal>
     </>
   );

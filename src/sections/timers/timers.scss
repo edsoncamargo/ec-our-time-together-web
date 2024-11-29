@@ -1,22 +1,8 @@
 .ec-timers {
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   gap: var(--ec-spacing-lg);
   position: relative;
   overflow: hidden;
-
-  &__title {
-    width: 100%;
-    font-size: clamp(1rem, 12vw, 72px);
-    line-height: 34px;
-    text-align: center;
-    color: var(--ec-color-interactive-light);
-    text-shadow: -2px -2px 0 var(--ec-color-primary-background),
-      2px -2px 0 var(--ec-color-primary-background),
-      -2px 2px 0 var(--ec-color-primary-background),
-      2px 2px 0 var(--ec-color-primary-background);
-    z-index: 1;
-    position: relative;
-    bottom: -16px;
-  }
 }
