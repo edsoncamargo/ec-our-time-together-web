@@ -37,11 +37,11 @@ fastify.get('/redirect', async (_, reply: FastifyReply) => {
 const start = async () => {
   try {
     const options: FastifyListenOptions = {
-      port: 3000,
       host: '0.0.0.0',
+      port: 3000,
     };
     await fastify.listen(options);
-    console.log('Server listening at http://localhost:3000');
+    console.log('Server listening ⚙️');
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
