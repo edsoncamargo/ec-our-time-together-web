@@ -59,6 +59,7 @@ export default function Navbar() {
           <h1 className='ec-norican ec-norican--overflow'>
             próximo dia especial.
           </h1>
+
           <Calendars />
         </div>
       </Modal>
