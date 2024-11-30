@@ -3,4 +3,13 @@
     display: flex;
     gap: var(--ec-spacing-md);
   }
+
+  &__calendars {
+    padding: {
+      top: 32px;
+      left: 24px;
+      right: 24px;
+      bottom: 40px;
+    }
+  }
 }

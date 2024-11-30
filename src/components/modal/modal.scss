@@ -16,11 +16,7 @@
   }
   box-shadow: var(--ec-shadow-medium-up);
   box-sizing: border-box;
-  padding: {
-    top: 32px;
-    left: 24px;
-    right: 24px;
-  }
+  overflow: hidden;
   transition: bottom 0.3s ease-in-out;
 
   &[data-open='true'] {
@@ -37,7 +33,6 @@
     flex-direction: column;
     gap: var(--ec-spacing-lg);
     overflow-y: auto;
-    padding-bottom: 40px;
     opacity: 0;
     filter: blur(4px);
     transition: all 0.6s ease-in-out;

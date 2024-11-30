@@ -1,6 +1,7 @@
 import 'aos/dist/aos.css';
 
 import AOS from 'aos';
+import AudioPlayer from './sections/audio-player/audio-player.tsx';
 import Footer from './components/footer/footer.tsx';
 import Home from './sections/home/home.tsx';
 import Navbar from './sections/navbar/navbar.tsx';
@@ -16,6 +17,7 @@ function Root() {
       <article className='ec-content'>
         <Navbar />
         <Timers />
+        <AudioPlayer />
       </article>
 
       <Footer />
