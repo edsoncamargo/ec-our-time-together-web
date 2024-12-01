@@ -1,13 +1,8 @@
 {
-  "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "dist/*.js",
-      "use": "@vercel/node"
+      "source": "/(.*)",
+      "destination": "/dist/server.js"
     }
-  ],
-  "routes": [
-    { "src": "/qrcode", "dest": "/api/qr-code" },
-    { "src": "/redirect", "dest": "/api/redirect" }
   ]
 }
