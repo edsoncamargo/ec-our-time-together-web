@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tsx watch src/api/server.ts",
     "build": "tsc -p tsconfig.json",
-    "start": "node build/server.js",
+    "start": "node build/api/server.js",
     "vercel": "vercel dev"
   },
   "keywords": [],
