@@ -1,15 +1,42 @@
-import Fastify, { type FastifyReply, type FastifyRequest } from 'fastify';
-import { router } from './routes';
+import Fastify, { FastifyReply, FastifyRequest } from 'fastify';
 
-const fastify = Fastify({ logger: true });
+import QRCode from 'qrcode';
 
-fastify.register(router, { prefix: '/' });
+const app = Fastify({
+  logger: true,
+});
 
-export default async (req: FastifyRequest, res: FastifyReply) => {
+app.get('/', async (req, res) => {
+  return res.status(200).type('text/html').send('Running api 🚀');
+});
+
+app.get('/qrcode', async (request: FastifyRequest, reply: FastifyReply) => {
+  const redirectToUrl = '/api/redirect';
+
   try {
-    await fastify.ready();
-    fastify.server.emit('request', req, res);
+    const qrCodeImage = await QRCode.toDataURL(
+      `${request.protocol}://${request.hostname}${redirectToUrl}`
+    );
+
+    return reply.header('Content-Type', 'text/html').send(`
+          <html>
+            <body style="width: 100%; height: 100%; display: 
+                flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden;">
+              <img src="${qrCodeImage}" alt="QR Code" style="width: 15%" />
+            </body>
+          </html>
+        `);
   } catch (error) {
-    res.status(500).send({ error });
+    reply.status(500).send(error);
   }
-};
+});
+
+app.get('/redirect', async (_, reply: FastifyReply) => {
+  const redirectToUrl = 'https://nosso-tempo-juntos-beta.vercel.app/';
+  reply.redirect(redirectToUrl);
+});
+
+export default async function handler(req: any, res: any) {
+  await app.ready();
+  app.server.emit('request', req, res);
+}
