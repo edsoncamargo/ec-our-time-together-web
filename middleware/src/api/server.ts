@@ -37,16 +37,16 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   fastify.server.emit('request', req, res);
 };
 
-const start = async () => {
-  try {
-    await fastify.listen({ port: 3000, host: '0.0.0.0' });
-    console.log('Server is running at http://localhost:3000');
-  } catch (err) {
-    console.error(err);
-    process.exit(1);
-  }
-};
+// const start = async () => {
+//   try {
+//     await fastify.listen({ port: 3000, host: '0.0.0.0' });
+//     console.log('Server is running at http://localhost:3000');
+//   } catch (err) {
+//     console.error(err);
+//     process.exit(1);
+//   }
+// };
 
-if (require.main === module) {
-  start();
-}
+// if (require.main === module) {
+//   start();
+// }
