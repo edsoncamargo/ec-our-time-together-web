@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch src/api/server.ts",
     "build": "tsc",
     "start": "node dist/server.js"
   },
@@ -21,6 +21,7 @@
   "devDependencies": {
     "@types/node": "22.10.1",
     "@types/qrcode": "1.5.5",
+    "@vercel/node": "3.2.27",
     "tsx": "4.19.2",
     "typescript": "5.7.2"
   }
