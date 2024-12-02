@@ -62,5 +62,12 @@
       border-color: transparent;
       opacity: 0.3;
     }
+
+    &--today {
+      color: var(--ec-color-primary-background);
+      font-weight: bold;
+      background-color: var(--ec-color-interactive-light);
+      border: 1px solid var(--ec-color-interactive-light);
+    }
   }
 }

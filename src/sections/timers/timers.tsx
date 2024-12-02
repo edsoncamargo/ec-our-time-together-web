@@ -24,10 +24,15 @@ export default function Timers() {
           icon: doc.data().icon,
         };
 
-        data.unshift(timer);
+        data.push(timer);
       });
 
-      setTimers(data);
+      const sortedData = [...data].sort(
+        (a, b) =>
+          new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+      );
+
+      setTimers(sortedData);
     });
   };
 
@@ -44,7 +49,7 @@ export default function Timers() {
       <h1 className='ec-norican ec-norican--overflow'>nosso tempo juntos.</h1>
 
       {timers.map((timer: Timer, index) => {
-        const Icon = Icons[timer.icon as keyof typeof Icons];
+        const Icon = Icons[timer.icon.trim() as keyof typeof Icons];
 
         return (
           <div key={timer.title} data-aos={index !== 0 ? 'fade-up' : undefined}>

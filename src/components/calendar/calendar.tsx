@@ -12,18 +12,18 @@ type DayInfo = {
   day: string;
   isCurrent?: boolean;
   isPrevious: boolean;
+  isToday: boolean;
 };
 
 export default function Calendar({ celebrationDate }: Readonly<CalendarProps>) {
   const weekDays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
-  const currentDate = services.dayjs();
+  const todayDate = services.dayjs();
 
-  const currentYear = currentDate.get('year');
-  const inputDate = services.dayjs(`${currentYear}-${celebrationDate}`);
+  const inputDate = services.dayjs(celebrationDate);
   const celebrationMonth = inputDate.format('MMM');
 
-  const adjustedDate = inputDate.isBefore(currentDate, 'day')
+  const adjustedDate = inputDate.isBefore(todayDate, 'day')
     ? inputDate.add(1, 'year')
     : inputDate;
   const adjustedYear = adjustedDate.get('year');
@@ -43,6 +43,10 @@ export default function Calendar({ celebrationDate }: Readonly<CalendarProps>) {
         day: currentDate.format('DD/MM/YYYY'),
         isCurrent: currentDate.isSame(adjustedDate, 'day'),
         isPrevious: false,
+        isToday:
+          todayDate.isSame(currentDate, 'day') &&
+          todayDate.isSame(currentDate, 'month') &&
+          todayDate.isSame(currentDate, 'year'),
       });
 
       currentDate = currentDate.add(1, 'day');
@@ -60,6 +64,7 @@ export default function Calendar({ celebrationDate }: Readonly<CalendarProps>) {
         day: previousDate.format('DD/MM/YYYY'),
         isCurrent: false,
         isPrevious: true,
+        isToday: false,
       });
 
       previousDate = previousDate.add(1, 'day');
@@ -98,7 +103,9 @@ export default function Calendar({ celebrationDate }: Readonly<CalendarProps>) {
                   key={dayInfo.day + index}
                   className={`ec-calendar__day${
                     dayInfo.isPrevious ? ' ec-calendar__day--previous' : ''
-                  }${dayInfo.isCurrent ? ' ec-calendar__day--current' : ''}`}
+                  }${dayInfo.isCurrent ? ' ec-calendar__day--current' : ''}${
+                    dayInfo.isToday ? ' ec-calendar__day--today' : ''
+                  }`}
                 >
                   {dayInfo.day.split('/')[0]}
                 </span>
