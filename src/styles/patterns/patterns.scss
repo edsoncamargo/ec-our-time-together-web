@@ -19,4 +19,21 @@
     background-image: url('/images/patterns/topography.svg');
     background-repeat: repeat;
   }
+
+  &--glamorous {
+    &:before {
+      content: '';
+      height: 100%;
+      width: 100%;
+      display: block;
+      background-size: 25%;
+      background-image: url('/images/patterns/glamorous.svg');
+      background-repeat: repeat;
+      position: absolute;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    z-index: -1;
+  }
 }

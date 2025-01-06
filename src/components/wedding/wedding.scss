@@ -1,0 +1,55 @@
+.ec-wedding {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h3 {
+    font-size: 60px;
+  }
+
+  &__actions {
+    width: 100%;
+    max-width: 280px;
+    display: flex;
+    justify-content: center;
+    gap: var(--ec-spacing-xxs);
+    position: relative;
+    z-index: 999;
+    margin: 0 auto;
+    margin-top: -60px;
+    margin-bottom: 90px;
+
+    button {
+      flex: 1;
+      position: relative;
+      left: 0px;
+      transition: all 0.3s ease-in-out;
+
+      span {
+        position: relative;
+        top: 6px;
+      }
+    }
+  }
+
+  &__removing {
+    animation: scaleFade 1s forwards;
+  }
+}
+
+@keyframes scaleFade {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
