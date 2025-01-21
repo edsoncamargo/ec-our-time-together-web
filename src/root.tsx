@@ -1,6 +1,6 @@
 import 'aos/dist/aos.css';
 
-import { createContext, useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import AOS from 'aos';
 import AudioPlayer from './sections/audio-player/audio-player.tsx';
@@ -10,54 +10,66 @@ import Modal from './components/modal/modal.tsx';
 import Navbar from './sections/navbar/navbar.tsx';
 import Timers from './sections/timers/timers.tsx';
 import { Wedding } from './components/wedding/wedding.tsx';
-
-AOS.init();
-
-export const WeddingContext = createContext(null);
+import { WeddingContext } from './contexts/wedding.context.tsx';
 
 function Root() {
   const [isModalWeddingOpen, setIsModalWeddingOpen] = useState<boolean>(false);
-  const [isWeddingActive, setIsWeddingActive] = useState(false);
+  const [isWeddingActive, setIsWeddingActive] = useState<boolean>(false);
 
-  async function handleModalWeddingOpen() {
-    setTimeout(() => {
-      setIsModalWeddingOpen(true);
-    }, 2000);
-  }
-
-  function handleModalCinemaClose() {
-    setIsModalWeddingOpen(false);
-  }
+  const weddingContextValue = useMemo(
+    () => ({ isWeddingActive, setIsWeddingActive }),
+    [isWeddingActive, setIsWeddingActive]
+  );
 
   useEffect(() => {
-    handleModalWeddingOpen();
+    const timer = setTimeout(() => {
+      setIsModalWeddingOpen(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const handleScrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    };
+
+    setTimeout(() => {
+      handleScrollToTop();
+    }, 250);
+
+    AOS.init();
+  }, []);
+
+  function handleWeddingConfirm() {
+    setIsModalWeddingOpen(false);
+    setIsWeddingActive(true);
+  }
+
   return (
-    <>
-      <WeddingContext.Provider value={{ isWeddingActive }}>
-        <main>
-          <Home />
+    <WeddingContext.Provider value={weddingContextValue}>
+      <main>
+        <Home />
 
-          <article className='ec-content'>
-            <Navbar />
-            <Timers />
-            <AudioPlayer />
-          </article>
+        <article className='ec-content'>
+          <Navbar />
+          <Timers />
+          <AudioPlayer />
+        </article>
 
-          <Footer />
-        </main>
+        <Footer />
+      </main>
 
-        <Modal isOpen={isModalWeddingOpen} handleClose={handleModalCinemaClose}>
-          <Wedding
-            onYes={() => {
-              handleModalCinemaClose();
-              setIsWeddingActive(true);
-            }}
-          />
-        </Modal>
-      </WeddingContext.Provider>
-    </>
+      <Modal
+        isOpen={isModalWeddingOpen}
+        handleClose={() => setIsModalWeddingOpen(false)}
+      >
+        <Wedding onYes={handleWeddingConfirm} />
+      </Modal>
+    </WeddingContext.Provider>
   );
 }
 

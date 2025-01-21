@@ -7,7 +7,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 
 import Tag from '../../components/tag/tag';
 import { Timer } from '../../types/timer.types';
-import { WeddingContext } from '../../root';
+import { WeddingContext } from '../../contexts/wedding.context';
 import { db } from '../../lib/firebase';
 
 export default function Timers() {
@@ -44,26 +44,28 @@ export default function Timers() {
   }, []);
 
   useEffect(() => {
-    const newTimer = {
-      id: 'Wedding',
-      title: 'DESDE O PEDIDO DE CASAMENTO',
-      startDate: new Date(),
-      icon: 'FaHandHoldingHeart',
-    };
+    if (isWeddingActive) {
+      const newTimer = {
+        id: 'Wedding',
+        title: 'DESDE O PEDIDO DE CASAMENTO',
+        startDate: new Date(),
+        icon: 'FaHandHoldingHeart',
+      };
 
-    setTimers((prevTimers) => {
-      const updatedTimers = [...prevTimers, newTimer];
+      setTimers((prevTimers) => {
+        const updatedTimers = [...prevTimers, newTimer];
 
-      // Rola até o novo elemento após o próximo render
-      setTimeout(() => {
-        const ref = timerRefs.current.get(newTimer.id);
-        if (ref) {
-          ref.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      }, 0);
+        setTimeout(() => {
+          const ref = timerRefs.current.get(newTimer.id);
 
-      return updatedTimers;
-    });
+          if (ref) {
+            ref.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 0);
+
+        return updatedTimers;
+      });
+    }
   }, [isWeddingActive]);
 
   if (timers?.length <= 0) {

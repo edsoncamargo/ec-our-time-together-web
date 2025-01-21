@@ -21,7 +21,7 @@ function Header({ children }: Readonly<HeaderProps>) {
 }
 
 interface BodyProps {
-  startDate: string;
+  startDate: string | Date;
 }
 
 function Body({ startDate }: Readonly<BodyProps>) {

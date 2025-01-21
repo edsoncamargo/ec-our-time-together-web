@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import services from '../../lib/days';
 
 interface TimerProps {
-  startDate: string;
+  startDate: string | Date;
 }
 
 export default function Timer({ startDate }: Readonly<TimerProps>) {
