@@ -23,7 +23,8 @@ function Root() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsModalWeddingOpen(true);
+      const canOpenRequested = false;
+      setIsModalWeddingOpen(canOpenRequested);
     }, 1000);
 
     return () => clearTimeout(timer);
